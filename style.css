@@ -69,5 +69,5 @@ p {
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
   line-height: 1.5;
-  text-shadow: 2px 3px 4px #03305d, 0 0 0 #bd1414, 2px 3px 4px #fff;
- }
+  text-shadow: 2px 3px 4px #03305d, 0 0 0 #bd1414, 2px 2px 3px #fff;
+}

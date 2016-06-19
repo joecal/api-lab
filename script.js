@@ -1,11 +1,5 @@
 $(window).load(function() {
-  $('#ID-of-second-div').animate({opacity: 0 }, 4000, function(){
-  });
-    var both = $('#ID-of-second-div');
-    both.click(function(){
-    both.hide();
-  });
-
+  $('#ID-of-second-div').animate({opacity: 0 }, 5000).fadeOut(1000);
 });
 
 function getISS () {
@@ -21,8 +15,8 @@ function getISS () {
             var status = data2['geocoding_results']['STATUS']['status'];
             console.log(data2)
             setTimeout(5000);
-            if (status == "FAILED, NO_RESULTS"){
-              $('#isslat').html(lat2 + "&deg N");
+            if (status == "FAILED, NO_RESULTS" || "FAILED, ACCESS_DENIED"){
+              $('#isslat').html(lat2 + "&deg N, ");
               $('#isslon').html(lon2 + "&deg E");
             }
             else if (status == "SUCCESS" && data2['geocoding_results']['RESULTS'][0]['ADDRESS']['admin_1'] != "UNAVAILABLE"){
@@ -30,7 +24,7 @@ function getISS () {
               var admin1 = data2['geocoding_results']['RESULTS'][0]['ADDRESS']['admin_1'];
               console.log(country)
               console.log(admin1)
-              $('#isslat').html(country);
+              $('#isslat').html(country + ", ");
               $('#isslon').html(admin1);
             }
             else {
@@ -51,7 +45,7 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 var tv,
 		playerDefaults = {autoplay: 0, autohide: 1, modestbranding: 0, rel: 0, showinfo: 0, controls: 0, disablekb: 1, enablejsapi: 0, iv_load_policy: 3};
 var vid = [
-			{'videoId': '3DBVIQgsX3A', 'startSeconds': 0, 'endSeconds': 240, 'suggestedQuality': 'hd720'},
+			{'videoId': '3DBVIQgsX3A', 'startSeconds': 0, 'endSeconds': 54, 'suggestedQuality': 'hd720'},
 		],
 		randomvid = Math.floor(Math.random() * (vid.length - 1 + 1));
 
@@ -88,13 +82,4 @@ function vidRescale(){
 
 $(window).on('load resize', function(){
   vidRescale();
-});
-
-$('.hi span').on('click', function(){
-  $('#tv').toggleClass('mute');
-  if($('#tv').hasClass('mute')){
-    tv.mute();
-  } else {
-    tv.unMute();
-  }
 });
