@@ -4,28 +4,45 @@ $(window).load(function() {
     var both = $('#ID-of-second-div');
     both.click(function(){
     both.hide();
-    callPlayer('player', 'playVideo');
   });
 
 });
 
-function apiCall() {
-  $.ajax({
-  url: "http://api.open-notify.org/iss-now.json?callback=?",
-  type: "GET",
-  dataType: "json"
-}).done ( function(response){
-    var lat = response.iss_position.latitude;
-    var lon = response.iss_position.longitude;
-    $('#isslat').html(Math.round(lat*1000)/1000.0);
-    $('#isslon').html(Math.round(lon*1000)/1000.0);
-    setTimeout(apiCall, 3000);
-}).fail ( function (){
-  console.log("fail");
-})
+function getISS () {
+    $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function(data) {
+        var lat = data['iss_position']['latitude'];
+        var lon = data['iss_position']['longitude'];
+        var lat2 = Math.round(lat*10000000)/10000000.0;
+        var lon2 = Math.round(lon*10000000)/10000000.0;
+        console.log(lat2)
+        console.log(lon2)
+        setTimeout(5000);
+            $.getJSON("https://www.geocode.farm/v3/json/reverse/?lat="+lat2+"&lon="+lon2+"&lang=en&count=1", function(data2) {
+            var status = data2['geocoding_results']['STATUS']['status'];
+            console.log(data2)
+            setTimeout(5000);
+            if (status == "FAILED, NO_RESULTS"){
+              $('#isslat').html(lat2 + "&deg N");
+              $('#isslon').html(lon2 + "&deg E");
+            }
+            else if (status == "SUCCESS" && data2['geocoding_results']['RESULTS'][0]['ADDRESS']['admin_1'] != "UNAVAILABLE"){
+              var country = data2['geocoding_results']['RESULTS'][0]['ADDRESS']['country'];
+              var admin1 = data2['geocoding_results']['RESULTS'][0]['ADDRESS']['admin_1'];
+              console.log(country)
+              console.log(admin1)
+              $('#isslat').html(country);
+              $('#isslon').html(admin1);
+            }
+            else {
+              var country = data2['geocoding_results']['RESULTS'][0]['ADDRESS']['country'];
+              console.log(country)
+              $('#isslat').html(country);
+            }
+          });
+    });
+    setTimeout(getISS, 5000);
 }
-apiCall();
-
+getISS();
 
 var tag = document.createElement('script');
 		tag.src = 'https://www.youtube.com/player_api';
@@ -81,24 +98,3 @@ $('.hi span').on('click', function(){
     tv.unMute();
   }
 });
-
-
-// $(document).ready( function() {
-//   function apiCall() {
-//     $.ajax({
-//     url: "https://www.geocode.farm/v3/json/reverse/?lat=47.9311632&lon=-99.3464880&lang=en&count=1",
-//     type: "GET",
-//     dataType: "json"
-//   }).done ( function(response){
-//     console.log(response.geocoding_results['RESULTS']ADDRESS)
-//       var country = response.country;
-//       var admin1 = response['admin_1'];
-//       $('#isslat').html(country);
-//       $('#isslon').html(admin1);
-//       // setTimeout(apiCall, 3000);
-//   }).fail ( function (){
-//     console.log("fail");
-//   })
-// }
-// apiCall();
-// })

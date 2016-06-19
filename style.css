@@ -45,7 +45,7 @@ html, .tv, #holder, #ID-of-second-div{
     margin: auto;
     opacity: 0;
     transition: opacity .5s;
-    
+
     &.active {
       opacity: 1;
     }
