@@ -3,12 +3,12 @@ $(window).load(function() {
 });
 
 function getISS () {
-    $.getJSON('https://api.open-notify.org/iss-now.json?callback=?', function(data) {
+    $.getJSON('http://api.open-notify.org/iss-now.json?callback=?', function(data) {
         var lat = data['iss_position']['latitude'];
         var lon = data['iss_position']['longitude'];
         var lat2 = Math.round(lat*10000000)/10000000.0;
         var lon2 = Math.round(lon*10000000)/10000000.0;
-            $.getJSON("https://www.geocode.farm/v3/json/reverse/?lat="+lat2+"&lon="+lon2+"&lang=en&count=1", function(data2) {
+            $.getJSON("http://www.geocode.farm/v3/json/reverse/?lat="+lat2+"&lon="+lon2+"&lang=en&count=1", function(data2) {
               console.log(data2)
             var status = data2['geocoding_results']['STATUS']['status'];
             if (status == "FAILED, NO_RESULTS"){
