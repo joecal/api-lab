@@ -1,26 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <title>International Space Station Location</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://assets-cdn.github.com/assets/github-65dd5c9361fdb0e83dc39e3e2d5c40a412f0a234e4ec45a061d759b3fc889a6b.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <script src="script.js"></script>
-  <link href="//db.onlinewebfonts.com/c/dae123c34c5e1cb46f0531f8bad05ca6?family=Nasalization" rel="stylesheet" type="text/css"/>
-
+  <link href="https://allfont.net/allfont.css?fonts=nasalization-free" rel="stylesheet" type="text/css" />
 </head>
 <body>
-
   <div class="tv">
-
     <p>The International Space Station is currently over: <br> <span id='isslat'></span><span id='isslon'></span></p>
-
-    <div id="ID-of-second-div"></div>
-
-		<div class="screen mute" id="tv"></div>
-
+    <div id="fadeDiv"></div>
+    <video autoplay id="bgvid" loop>
+      <source src="bg.mp4" type="video/mp4">
+    </video>
 	</div>
-
 </body>
 </html>

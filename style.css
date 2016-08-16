@@ -1,13 +1,4 @@
-@import url(http://db.onlinewebfonts.com/c/dae123c34c5e1cb46f0531f8bad05ca6?family=Nasalization); 
-
-@font-face {font-family: "Nasalization";
-    src: url("http://db.onlinewebfonts.com/t/dae123c34c5e1cb46f0531f8bad05ca6.eot");
-    src: url("http://db.onlinewebfonts.com/t/dae123c34c5e1cb46f0531f8bad05ca6.eot?#iefix") format("embedded-opentype"),
-    url("http://db.onlinewebfonts.com/t/dae123c34c5e1cb46f0531f8bad05ca6.woff2") format("woff2"),
-    url("http://db.onlinewebfonts.com/t/dae123c34c5e1cb46f0531f8bad05ca6.woff") format("woff"),
-    url("http://db.onlinewebfonts.com/t/dae123c34c5e1cb46f0531f8bad05ca6.ttf") format("truetype"),
-    url("http://db.onlinewebfonts.com/t/dae123c34c5e1cb46f0531f8bad05ca6.svg#Nasalization") format("svg");
-}
+@import url(https://allfont.net/allfont.css?fonts=nasalization-free);
 
 *{
   margin:0;
@@ -23,37 +14,8 @@
 }
 
 body {
+  margin: 0;
   background: #fff;
-}
-
-html, .tv, #holder, #ID-of-second-div{
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-
-  .screen {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-    margin: auto;
-    opacity: 0;
-    transition: opacity .5s;
-
-    &.active {
-      opacity: 1;
-    }
-  }
-}
-
-#ID-of-second-div {
-    background: #000;
 }
 
 p {
@@ -63,11 +25,38 @@ p {
   left: 0;
   z-index: 1;
   margin: auto;
-  font-family: Nasalization;
+  font-family: 'Nasalization Free', arial;
   font-size: 40px;
   font-weight: bold;
   color: rgba(255, 255, 255, 0.6);
   text-align: center;
   line-height: 1.5;
   text-shadow: 2px 3px 4px #03305d, 0 0 0 #bd1414, 2px 2px 3px #fff;
+}
+
+#fadeDiv {
+    background: #000;
+}
+
+video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    transform: translateX(-50%) translateY(-50%);
+    background: #fff;
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+@media screen and (max-width: 500px) {
+  div{width:70%;}
+}
+@media screen and (max-device-width: 800px) {
+  html { background: #fff; }
+  #bgvid { display: none; }
 }
